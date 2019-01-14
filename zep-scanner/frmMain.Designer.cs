@@ -32,6 +32,9 @@
             this.txtScanCode = new System.Windows.Forms.TextBox();
             this.cmbPresets = new System.Windows.Forms.ComboBox();
             this.cmbPresetFilter = new System.Windows.Forms.ComboBox();
+            this.pctBarCode = new System.Windows.Forms.PictureBox();
+            this.btnChooseImage = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBarCode)).BeginInit();
             this.SuspendLayout();
             // 
             // btnScan
@@ -48,8 +51,10 @@
             this.txtScanCode.Location = new System.Drawing.Point(12, 39);
             this.txtScanCode.Multiline = true;
             this.txtScanCode.Name = "txtScanCode";
+            this.txtScanCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtScanCode.Size = new System.Drawing.Size(329, 340);
             this.txtScanCode.TabIndex = 1;
+            this.txtScanCode.WordWrap = false;
             // 
             // cmbPresets
             // 
@@ -67,11 +72,31 @@
             this.cmbPresetFilter.Size = new System.Drawing.Size(209, 21);
             this.cmbPresetFilter.TabIndex = 3;
             // 
+            // pctBarCode
+            // 
+            this.pctBarCode.Location = new System.Drawing.Point(347, 39);
+            this.pctBarCode.Name = "pctBarCode";
+            this.pctBarCode.Size = new System.Drawing.Size(346, 206);
+            this.pctBarCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pctBarCode.TabIndex = 4;
+            this.pctBarCode.TabStop = false;
+            // 
+            // btnChooseImage
+            // 
+            this.btnChooseImage.Location = new System.Drawing.Point(347, 385);
+            this.btnChooseImage.Name = "btnChooseImage";
+            this.btnChooseImage.Size = new System.Drawing.Size(346, 53);
+            this.btnChooseImage.TabIndex = 5;
+            this.btnChooseImage.Text = "Choose Image";
+            this.btnChooseImage.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 450);
+            this.ClientSize = new System.Drawing.Size(705, 450);
+            this.Controls.Add(this.btnChooseImage);
+            this.Controls.Add(this.pctBarCode);
             this.Controls.Add(this.cmbPresetFilter);
             this.Controls.Add(this.cmbPresets);
             this.Controls.Add(this.txtScanCode);
@@ -79,7 +104,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "frmMain";
-            this.Text = "Walli.SweedPos.Utils.Scanner";
+            this.Text = "zep-scanner";
+            this.Load += new System.EventHandler(this.frmMain_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pctBarCode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -91,6 +118,8 @@
         private System.Windows.Forms.TextBox txtScanCode;
         private System.Windows.Forms.ComboBox cmbPresets;
         private System.Windows.Forms.ComboBox cmbPresetFilter;
+        private System.Windows.Forms.PictureBox pctBarCode;
+        private System.Windows.Forms.Button btnChooseImage;
     }
 }
 
