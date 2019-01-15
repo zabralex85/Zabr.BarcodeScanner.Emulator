@@ -1,4 +1,4 @@
-﻿namespace Walli.SweedPos.Utils.Scanner
+﻿namespace ZEP.Scanner
 {
     partial class frmMain
     {
@@ -33,18 +33,24 @@
             this.cmbPresets = new System.Windows.Forms.ComboBox();
             this.cmbPresetFilter = new System.Windows.Forms.ComboBox();
             this.pctBarCode = new System.Windows.Forms.PictureBox();
-            this.btnChooseImage = new System.Windows.Forms.Button();
+            this.lblTimeOut = new System.Windows.Forms.Label();
+            this.numScanTimeOut = new System.Windows.Forms.NumericUpDown();
+            this.numScanTimeoutLag = new System.Windows.Forms.NumericUpDown();
+            this.lblScanSimTimeout = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pctBarCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numScanTimeOut)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numScanTimeoutLag)).BeginInit();
             this.SuspendLayout();
             // 
             // btnScan
             // 
-            this.btnScan.Location = new System.Drawing.Point(12, 385);
+            this.btnScan.Location = new System.Drawing.Point(12, 477);
             this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(329, 53);
+            this.btnScan.Size = new System.Drawing.Size(681, 53);
             this.btnScan.TabIndex = 0;
             this.btnScan.Text = "Do Scan";
             this.btnScan.UseVisualStyleBackColor = true;
+            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
             // txtScanCode
             // 
@@ -52,7 +58,7 @@
             this.txtScanCode.Multiline = true;
             this.txtScanCode.Name = "txtScanCode";
             this.txtScanCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtScanCode.Size = new System.Drawing.Size(329, 340);
+            this.txtScanCode.Size = new System.Drawing.Size(681, 220);
             this.txtScanCode.TabIndex = 1;
             this.txtScanCode.WordWrap = false;
             // 
@@ -74,28 +80,74 @@
             // 
             // pctBarCode
             // 
-            this.pctBarCode.Location = new System.Drawing.Point(347, 39);
+            this.pctBarCode.Location = new System.Drawing.Point(12, 265);
             this.pctBarCode.Name = "pctBarCode";
-            this.pctBarCode.Size = new System.Drawing.Size(346, 206);
-            this.pctBarCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pctBarCode.Size = new System.Drawing.Size(681, 206);
+            this.pctBarCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pctBarCode.TabIndex = 4;
             this.pctBarCode.TabStop = false;
             // 
-            // btnChooseImage
+            // lblTimeOut
             // 
-            this.btnChooseImage.Location = new System.Drawing.Point(347, 385);
-            this.btnChooseImage.Name = "btnChooseImage";
-            this.btnChooseImage.Size = new System.Drawing.Size(346, 53);
-            this.btnChooseImage.TabIndex = 5;
-            this.btnChooseImage.Text = "Choose Image";
-            this.btnChooseImage.UseVisualStyleBackColor = true;
+            this.lblTimeOut.AutoSize = true;
+            this.lblTimeOut.Location = new System.Drawing.Point(410, 15);
+            this.lblTimeOut.Name = "lblTimeOut";
+            this.lblTimeOut.Size = new System.Drawing.Size(50, 13);
+            this.lblTimeOut.TabIndex = 5;
+            this.lblTimeOut.Text = "TimeOut:";
+            // 
+            // numScanTimeOut
+            // 
+            this.numScanTimeOut.Location = new System.Drawing.Point(466, 13);
+            this.numScanTimeOut.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numScanTimeOut.Minimum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.numScanTimeOut.Name = "numScanTimeOut";
+            this.numScanTimeOut.Size = new System.Drawing.Size(82, 20);
+            this.numScanTimeOut.TabIndex = 6;
+            this.numScanTimeOut.Value = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            // 
+            // numScanTimeoutLag
+            // 
+            this.numScanTimeoutLag.Location = new System.Drawing.Point(640, 13);
+            this.numScanTimeoutLag.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numScanTimeoutLag.Name = "numScanTimeoutLag";
+            this.numScanTimeoutLag.Size = new System.Drawing.Size(51, 20);
+            this.numScanTimeoutLag.TabIndex = 8;
+            // 
+            // lblScanSimTimeout
+            // 
+            this.lblScanSimTimeout.AutoSize = true;
+            this.lblScanSimTimeout.Location = new System.Drawing.Point(562, 15);
+            this.lblScanSimTimeout.Name = "lblScanSimTimeout";
+            this.lblScanSimTimeout.Size = new System.Drawing.Size(73, 13);
+            this.lblScanSimTimeout.TabIndex = 7;
+            this.lblScanSimTimeout.Text = "TimeOut (lag):";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 450);
-            this.Controls.Add(this.btnChooseImage);
+            this.ClientSize = new System.Drawing.Size(705, 544);
+            this.Controls.Add(this.numScanTimeoutLag);
+            this.Controls.Add(this.lblScanSimTimeout);
+            this.Controls.Add(this.numScanTimeOut);
+            this.Controls.Add(this.lblTimeOut);
             this.Controls.Add(this.pctBarCode);
             this.Controls.Add(this.cmbPresetFilter);
             this.Controls.Add(this.cmbPresets);
@@ -107,6 +159,8 @@
             this.Text = "zep-scanner";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pctBarCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numScanTimeOut)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numScanTimeoutLag)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,7 +173,10 @@
         private System.Windows.Forms.ComboBox cmbPresets;
         private System.Windows.Forms.ComboBox cmbPresetFilter;
         private System.Windows.Forms.PictureBox pctBarCode;
-        private System.Windows.Forms.Button btnChooseImage;
+        private System.Windows.Forms.Label lblTimeOut;
+        private System.Windows.Forms.NumericUpDown numScanTimeOut;
+        private System.Windows.Forms.NumericUpDown numScanTimeoutLag;
+        private System.Windows.Forms.Label lblScanSimTimeout;
     }
 }
 

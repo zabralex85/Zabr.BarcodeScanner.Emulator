@@ -4,25 +4,27 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Windows.Forms;
+using WindowsInput;
 
-namespace Walli.SweedPos.Utils.Scanner
+namespace ZEP.Scanner
 {
     public partial class frmMain : Form
     {
-        private PresetTree presetTree;
+        private readonly PresetTree _presetTree;
         private Preset CurrentPreset => ((Preset) cmbPresets.SelectedItem);
         private PresetData CurrentPresetData => ((PresetData)cmbPresetFilter.SelectedItem);
 
         public frmMain()
         {
-            presetTree = new PresetTree("presets");
+            _presetTree = new PresetTree("presets");
             InitializeComponent();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            cmbPresets.DataSource = presetTree.Presets;
+            cmbPresets.DataSource = _presetTree.Presets;
             cmbPresets.DisplayMember = "Name";
             cmbPresets.ValueMember = "Path";
 
@@ -34,11 +36,12 @@ namespace Walli.SweedPos.Utils.Scanner
             cmbPresetFilter.SelectedIndexChanged += ChangePresetFilter;
 
             txtScanCode.Text = CurrentPresetData.Value;
+            pctBarCode.Image = GenerateImage(txtScanCode.Text.Replace(Environment.NewLine, "\n"));
         }
 
-        List<PresetData> FilterData()
+        private List<PresetData> FilterData()
         {
-            List<PresetData> queryFilter = presetTree.Presets.First(p => p.Name == CurrentPreset.Name).PresetData;
+            var queryFilter = _presetTree.Presets.First(p => p.Name == CurrentPreset.Name).PresetData;
 
             if (CurrentPreset.Name == "ean13")
             {
@@ -60,8 +63,7 @@ namespace Walli.SweedPos.Utils.Scanner
 
         private Image GenerateImage(string data)
         {
-            // https://barcode.tec-it.com/barcode.ashx?data=978020137962&code=EAN13&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0&eclevel=L&download=true
-            var url = CurrentPreset.PresetConfig.WebService.Replace("{DATA}","");
+            var url = CurrentPreset.PresetConfig.WebService.Replace("{DATA}", System.Net.WebUtility.UrlEncode(data));
 
             WebClient wc = new WebClient();
             byte[] dataBytes = wc.DownloadData(url);
@@ -75,6 +77,37 @@ namespace Walli.SweedPos.Utils.Scanner
         private void ChangePreset(object sender, EventArgs e)
         {
             cmbPresetFilter.DataSource = FilterData();
+        }
+
+        private void btnScan_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep((int) numScanTimeOut.Value);
+            
+            var input = new InputSimulator();
+            string data;
+
+            if (CurrentPreset.Name == "pdf417")
+            {
+                data = txtScanCode.Text.Replace("\r\r", "\r")
+                                       .Replace(Environment.NewLine, "\n");
+            }
+            else
+            {
+                data = txtScanCode.Text;
+            }
+
+            if (numScanTimeoutLag.Value > 0)
+            {
+                for (int i = 0; i < data.Length; i++)
+                {
+                    input.Keyboard.TextEntry(data[i]);
+                    Thread.Sleep((int)numScanTimeoutLag.Value);
+                }
+            }
+            else
+            {
+                input.Keyboard.TextEntry(data);
+            }
         }
     }
 }

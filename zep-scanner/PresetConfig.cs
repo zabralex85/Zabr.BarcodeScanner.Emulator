@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace Walli.SweedPos.Utils.Scanner
+namespace ZEP.Scanner
 {
     public class PresetConfig
     {

@@ -1,4 +1,4 @@
-﻿namespace Walli.SweedPos.Utils.Scanner
+﻿namespace ZEP.Scanner
 {
     public class PresetData
     {

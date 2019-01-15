@@ -1,11 +1,10 @@
-﻿using CsvHelper;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using CsvHelper;
+using Newtonsoft.Json;
 
-namespace Walli.SweedPos.Utils.Scanner
+namespace ZEP.Scanner
 {
-
     public class Preset
     {
         public string Name { get; set; }
