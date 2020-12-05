@@ -1,4 +1,4 @@
-﻿namespace ZEP.Scanner
+﻿namespace Zabr.BarcodeScanner.Emulator.Forms
 {
     partial class frmMain
     {
@@ -37,6 +37,7 @@
             this.numScanTimeOut = new System.Windows.Forms.NumericUpDown();
             this.numScanTimeoutLag = new System.Windows.Forms.NumericUpDown();
             this.lblScanSimTimeout = new System.Windows.Forms.Label();
+            this.btnReadData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pctBarCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScanTimeOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScanTimeoutLag)).BeginInit();
@@ -46,9 +47,9 @@
             // 
             this.btnScan.Location = new System.Drawing.Point(12, 477);
             this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(681, 53);
+            this.btnScan.Size = new System.Drawing.Size(148, 53);
             this.btnScan.TabIndex = 0;
-            this.btnScan.Text = "Do Scan";
+            this.btnScan.Text = "Send Symbols";
             this.btnScan.UseVisualStyleBackColor = true;
             this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
@@ -69,6 +70,7 @@
             this.cmbPresets.Name = "cmbPresets";
             this.cmbPresets.Size = new System.Drawing.Size(114, 21);
             this.cmbPresets.TabIndex = 2;
+            this.cmbPresets.SelectedIndexChanged += new System.EventHandler(this.cmbPresets_SelectedIndexChanged);
             // 
             // cmbPresetFilter
             // 
@@ -139,11 +141,22 @@
             this.lblScanSimTimeout.TabIndex = 7;
             this.lblScanSimTimeout.Text = "TimeOut (lag):";
             // 
+            // btnReadData
+            // 
+            this.btnReadData.Location = new System.Drawing.Point(545, 480);
+            this.btnReadData.Name = "btnReadData";
+            this.btnReadData.Size = new System.Drawing.Size(148, 52);
+            this.btnReadData.TabIndex = 9;
+            this.btnReadData.Text = "Read Barcode";
+            this.btnReadData.UseVisualStyleBackColor = true;
+            this.btnReadData.Click += new System.EventHandler(this.btnReadData_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(705, 544);
+            this.Controls.Add(this.btnReadData);
             this.Controls.Add(this.numScanTimeoutLag);
             this.Controls.Add(this.lblScanSimTimeout);
             this.Controls.Add(this.numScanTimeOut);
@@ -156,7 +169,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "frmMain";
-            this.Text = "zep-scanner";
+            this.Text = "Zabr.BarcodeScanner.Emulator";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pctBarCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScanTimeOut)).EndInit();
@@ -177,6 +190,7 @@
         private System.Windows.Forms.NumericUpDown numScanTimeOut;
         private System.Windows.Forms.NumericUpDown numScanTimeoutLag;
         private System.Windows.Forms.Label lblScanSimTimeout;
+        private System.Windows.Forms.Button btnReadData;
     }
 }
 

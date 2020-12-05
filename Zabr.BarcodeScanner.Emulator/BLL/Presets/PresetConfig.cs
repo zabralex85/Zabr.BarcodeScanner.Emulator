@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ZEP.Scanner
+namespace Zabr.BarcodeScanner.Emulator.BLL.Presets
 {
     public class PresetConfig
     {

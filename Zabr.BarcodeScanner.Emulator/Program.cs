@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using Zabr.BarcodeScanner.Emulator.Forms;
 
-namespace ZEP.Scanner
+namespace Zabr.BarcodeScanner.Emulator
 {
     static class Program
     {

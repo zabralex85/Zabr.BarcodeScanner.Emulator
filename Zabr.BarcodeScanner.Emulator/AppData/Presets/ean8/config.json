@@ -1,0 +1,8 @@
+{
+  "webService": "https://barcode.tec-it.com/barcode.ashx?data={DATA}&code=EAN8&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0&eclevel=L&download=true",
+  "dataFile": "data.csv",
+  "fields": [
+    "Name",
+    "Value"
+  ]
+}

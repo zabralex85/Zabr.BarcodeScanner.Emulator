@@ -1,4 +1,4 @@
-﻿namespace ZEP.Scanner
+﻿namespace Zabr.BarcodeScanner.Emulator.BLL.Presets
 {
     public class Record
     {

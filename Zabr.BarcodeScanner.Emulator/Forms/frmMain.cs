@@ -7,8 +7,10 @@ using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using WindowsInput;
+using Zabr.BarcodeScanner.Emulator.BLL;
+using Zabr.BarcodeScanner.Emulator.BLL.Presets;
 
-namespace ZEP.Scanner
+namespace Zabr.BarcodeScanner.Emulator.Forms
 {
     public partial class frmMain : Form
     {
@@ -26,7 +28,6 @@ namespace ZEP.Scanner
         {
             cmbPresets.DataSource = _presetTree.Presets;
             cmbPresets.DisplayMember = "Name";
-            cmbPresets.ValueMember = "Path";
 
             cmbPresetFilter.DataSource = FilterData();
             cmbPresetFilter.DisplayMember = "Name";
@@ -37,6 +38,11 @@ namespace ZEP.Scanner
 
             txtScanCode.Text = CurrentPresetData.Value;
             pctBarCode.Image = GenerateImage(txtScanCode.Text.Replace(Environment.NewLine, "\n"));
+        }
+
+        private void cmbPresets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private List<PresetData> FilterData()
@@ -108,6 +114,11 @@ namespace ZEP.Scanner
             {
                 input.Keyboard.TextEntry(data);
             }
+        }
+
+        private void btnReadData_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

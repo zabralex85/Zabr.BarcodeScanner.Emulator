@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 
-namespace ZEP.Scanner
+namespace Zabr.BarcodeScanner.Emulator.BLL.Presets
 {
     public class PresetTree
     {
-        public List<Preset> Presets;
+        public readonly List<Preset> Presets;
 
         public PresetTree(string directory)
         {
@@ -14,7 +15,7 @@ namespace ZEP.Scanner
 
         private void InitPresets(string directory)
         {
-            var dir = new System.IO.DirectoryInfo("presets");
+            var dir = new System.IO.DirectoryInfo(Path.Combine("AppData", "Presets"));
             foreach (var item in dir.EnumerateDirectories())
             {
                 this.Presets.Add(new Preset(item.Name, item.FullName));

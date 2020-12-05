@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{95D252FB-0E42-42EA-89C0-46A3F01B4B3A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ZEP.Scanner</RootNamespace>
-    <AssemblyName>ZEP.Scanner</AssemblyName>
+    <RootNamespace>Zabr.BarcodeScanner.Emulator</RootNamespace>
+    <AssemblyName>Zabr.BarcodeScanner.Emulator</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,11 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
-      <HintPath>..\packages\CsvHelper.12.1.1\lib\net45\CsvHelper.dll</HintPath>
+    <Reference Include="CsvHelper, Version=18.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.18.0.0\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,20 +58,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmMain.cs">
+    <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
+    <Compile Include="Forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Preset.cs" />
-    <Compile Include="PresetConfig.cs" />
-    <Compile Include="PresetData.cs" />
-    <Compile Include="PresetTree.cs" />
+    <Compile Include="BLL\Presets\Preset.cs" />
+    <Compile Include="BLL\Presets\PresetConfig.cs" />
+    <Compile Include="BLL\Presets\PresetData.cs" />
+    <Compile Include="BLL\Presets\PresetTree.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Record.cs" />
-    <EmbeddedResource Include="frmMain.resx">
+    <Compile Include="BLL\Presets\Record.cs" />
+    <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -84,20 +84,29 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="AppData\Presets\ean8\config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\Presets\ean8\data.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\Presets\pdf417\data.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\Presets\upc\config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\Presets\upc\data.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
-    <None Include="presets\ean13\config.json">
+    <None Include="AppData\Presets\ean13\config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="presets\ean13\data_orig.csv">
+    <None Include="AppData\Presets\ean13\data.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="presets\ean13\data.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="presets\pdf417\config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="presets\pdf417\data.csv">
+    <None Include="AppData\Presets\pdf417\config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
@@ -114,11 +123,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="presets\code128\" />
-    <Folder Include="presets\code39\" />
-    <Folder Include="presets\ean8\" />
-    <Folder Include="presets\qr\" />
-    <Folder Include="presets\upc\" />
+    <Folder Include="AppData\Images\pdf417\dl\" />
+    <Folder Include="AppData\Images\pdf417\mmic\" />
+    <Folder Include="AppData\Presets\code128\" />
+    <Folder Include="AppData\Presets\code39\" />
+    <Folder Include="AppData\Presets\qr\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
