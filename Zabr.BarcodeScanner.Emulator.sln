@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28306.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zep-scanner", "zep-scanner\zep-scanner.csproj", "{95D252FB-0E42-42EA-89C0-46A3F01B4B3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zabr.BarcodeScanner.Emulator", "Zabr.BarcodeScanner.Emulator\Zabr.BarcodeScanner.Emulator.csproj", "{95D252FB-0E42-42EA-89C0-46A3F01B4B3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
